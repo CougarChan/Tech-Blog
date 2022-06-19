@@ -3,7 +3,6 @@ const sequelize = require('../config/connection');
 const { Post, User, } = require('../model');
 const Auth = require('../utils/auths')
 
-// get all posts for dashboard
 router.get('/', Auth, (req, res) => {
   console.log(req.session);
   console.log('======================');
@@ -12,11 +11,8 @@ router.get('/', Auth, (req, res) => {
       user_id: req.session.user_id
     },
     attributes: [
-      'id',
-      'post_url',
-      'title',
-      'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      'id','post_url','title','created_at',
+     
     ],
     include: [
       {
@@ -38,11 +34,7 @@ router.get('/', Auth, (req, res) => {
 router.get('/edit/:id', Auth, (req, res) => {
   Post.findByPk(req.params.id, {
     attributes: [
-      'id',
-      'post_url',
-      'title',
-      'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      'id', 'post_url', 'title', 'created_at',
     ],
     include: [
       {
