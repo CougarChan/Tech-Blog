@@ -1,0 +1,31 @@
+<!--this section is all about creating posts and this will what you will see after you long in for the first time-->
+<section>
+  <h2>Create New Post</h2>
+  <form class="new-post-form">
+    <div>
+      <label for="post-title">Title</label>  <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="post-url">Link</label>    <input id="post-url" name="post-url" />
+    </div>
+     <div>   <label for="post-text">Post</label>    <input id="post-text" name="post-text" /> </div> <button type="submit" class="btn-primary mb-4">Create</button>
+  </form>
+</section>
+<!-- This keeps track of your posts and will have them in a neat container once you log in-->
+{{#if posts.length}}
+<section>
+  <h2>Your Post</h2>
+  <ol>
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{else}}
+<h5>Please write some posts!</h5>
+{{/if}}
+
+<script src="../public/javascript/addPost.js"></script>

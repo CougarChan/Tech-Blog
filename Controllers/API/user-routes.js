@@ -23,14 +23,15 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ['id', 'title', 'post_url', 'post_text', 'created_at']
+        attributes: ['id',
+         'title', 'post_url', 'post_text', 'created_at']
       },
 
     ]
   })
     .then(dbUserData => {
       if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' });
+        res.status(404).json({ message: 'Sorry no one was found with this ID check somewhere else' });
         return;
       }
       res.json(dbUserData);
@@ -89,9 +90,6 @@ router.post('/login', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-
-  // pass in req.body instead to only update what's passed through
   User.update(req.body, {
     individualHooks: true,
     where: {
@@ -100,7 +98,7 @@ router.put('/:id', (req, res) => {
   })
     .then(dbUserData => {
       if (!dbUserData[0]) {
-        res.status(404).json({ message: 'No user found with this id' });
+        res.status(404).json({ message: 'Sorry no one was found with this ID check somewhere else' });
         return;
       }
       res.json(dbUserData);
@@ -119,21 +117,22 @@ router.delete('/:id', Auth, (req, res) => {
   })
     .then(dbUserData => {
       if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' });
+        res.status(404).json({ message: 'Sorry no one was found with this ID check somewhere else' });
+        
         return;
       }
       res.json(dbUserData);
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+      console.log(err);res.status(500).json(err);
     });
 });
 
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
-      res.status(204).end();
+      
+        res.status(204).end();
     });
   }
   else {

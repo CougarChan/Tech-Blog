@@ -35,6 +35,8 @@ User.init(
     },
   },
   {
+
+//Hooks//
     hooks: {
       async beforeCreate(newUserData) {
         newUserData.password = 
