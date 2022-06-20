@@ -15,7 +15,7 @@
 
   ## [Installation](#table-of-contents)
 
- You will have to npm install all the require dependencies and  start with a node index.js.
+ You will have to npm install all the require dependencies and  start with a node server.js.
 
   ## [Usage](#table-of-contents)
   It will by heroku 
